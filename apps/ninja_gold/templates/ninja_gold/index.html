@@ -1,0 +1,51 @@
+<html>
+  <head>
+     <title>Form Test Index</title>
+     {% load staticfiles %}
+   <link rel="stylesheet" href="{% static 'ninja_gold/css/index.css' %}">
+
+  </head>
+
+  <body>
+    <p>Your Gold: <input type="text" value="{{request.session.total}}"></p>
+        <form class="place" action='/process_money/farm' method='post'>
+          {%csrf_token%}
+          <h3>Farm</h3>
+          <p>(earns 10-20golds)</p>
+          <input type="hidden" name="building" value="farm"/>
+          <input type="submit" value="Find Gold!">
+        </form>
+        
+        <form class="place" action='/process_money/cave' method='post'>
+          {%csrf_token%}
+          <h3>Cave</h3>
+          <p>(earns 5-10golds)</p>
+          <input type="hidden" name="building" value="cave"/>
+          <input type="submit" value="Find Gold!">
+        </form>
+
+        <form class="place" action='/process_money/house' method='post'>
+          {%csrf_token%}
+          <h3>House</h3>
+          <p>(earns 2-5golds)</p>
+          <input type="hidden" name="building" value="house"/>
+         <input type="submit" value="Find Gold!">
+        </form>
+
+        <form class="place" action='/process_money/casino' method='post'>
+          <h3>Casino</h3>
+          <p>(earns/takes 0-50golds)</p>
+          {%csrf_token%}
+          <input type="hidden" name="building" value="casino"/>
+          <input type="submit" value="Find Gold!">
+        </form>
+
+
+    <p>Activities:</p>
+      <div id="textarea" >
+     {{request.session.a|safe}}
+      <!-- <textarea rows="30" cols="80" name=""></textarea> -->
+       </div>
+       <a href='/clear'>clear</a>
+    </body>
+</html>
